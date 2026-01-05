@@ -151,7 +151,8 @@
                 <Label
                        fx:id="spinsLeftLabel"/>
 
-                <Label text="GEWINN"/>
+                <Label
+                        text="GEWINN"/>
 
                 <Label
                        fx:id="winLabel"
