@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+
+<BorderPane
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml/1">
+
+    <top>
+        <BorderPane>
+            <right>
+                <HBox
+                        alignment="TOP_RIGHT">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+
+                    <Button
+                            fx:id="endGameButton"
+                            text="Spiel beenden"
+                            style="-fx-border-color: #8c6f1f;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13; -fx-font-size:14px;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"
+                            prefWidth="110"
+                            prefHeight="35">
+                    </Button>
+                </HBox>
+            </right>
+
+            <left>
+                <HBox
+                        alignment="TOP_LEFT">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+
+                    <Label text="K A R A M B A"
+                           style="-fx-font-size: 30px;-fx-font-weight: bold;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"/>
+
+                </HBox>
+            </left>
+        </BorderPane>
+    </top>
+
+    <center>
+        <VBox
+                alignment="CENTER"
+                spacing="20">
+            <padding>
+                <Insets
+                        bottom="10.0"
+                        left="10.0"
+                        right="10.0"
+                        top="10.0"/>
+            </padding>
+
+            <Label text="Start credit:"
+                   style="-fx-font-size: 25px;-fx-text-fill: black;-fx-text-weight: bold"/>
+
+            <TextField
+                    fx:id="rightCreditValue"
+                    promptText="Bitte geben Sie start credit ein..."
+                    style="-fx-alignment: center;-fx-font-size: 14px; -fx-background-radius: 13"
+                    maxWidth="200"
+                    prefHeight="50"/>
+
+            <Button
+                    fx:id="newGameButton"
+                    text="Spiel starten"
+                    style="-fx-border-color: #8c6f1f;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13;-fx-font-size:20px;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"
+                    prefWidth="200"
+                    prefHeight="50"
+            />
+            <Button
+                    fx:id="gameInstructionsButton"
+                    text="Spielanleitung"
+                    style="-fx-border-color: #8c6f1f;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13; -fx-font-size:14px;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"
+                    prefWidth="110"
+                    prefHeight="40">
+            </Button>
+        </VBox>
+
+    </center>
+</BorderPane>

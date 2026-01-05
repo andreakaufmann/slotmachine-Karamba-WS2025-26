@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml/1">
+
+    <VBox
+            alignment="CENTER"
+            spacing="50"
+            maxWidth="500"
+            maxHeight="500"
+            style="-fx-background-radius: 13;-fx-border-radius: 13px">
+
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40">
+            </Insets>
+        </padding>
+
+        <Label
+                text="Wählen Sie Ihre gewünschte Sprache:"
+                style="-fx-font-size: 25px;"
+                textAlignment="CENTER"
+                wrapText="true"
+                maxWidth="600">
+        </Label>
+
+        <GridPane
+                alignment="CENTER"
+                hgap="20"
+                vgap="20">
+
+            <Button
+                    fx:id="germanButton"
+                    text="Deutsch"
+                    style="-fx-border-color: black;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13;-fx-font-size:20px;-fx-text-fill: black"
+                    prefWidth="180"
+                    prefHeight="45"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="0">
+            </Button>
+
+            <Button
+                    fx:id="englishButton"
+                    text="Englisch"
+                    style="-fx-border-color: black;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13;-fx-font-size:20px;-fx-text-fill: black"
+                    prefWidth="180"
+                    prefHeight="45"
+                    GridPane.columnIndex="0"
+                    GridPane.rowIndex="1">
+            </Button>
+
+            <Button
+                    fx:id="frenchButton"
+                    text="Französisch"
+                    style="-fx-border-color: black;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13;-fx-font-size:20px;-fx-text-fill: black"
+                    prefWidth="180"
+                    prefHeight="45"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="0">
+            </Button>
+
+            <Button
+                    fx:id="italianButton"
+                    text="Italienisch"
+                    style="-fx-border-color: black;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13;-fx-font-size:20px;-fx-text-fill: black"
+                    prefWidth="180"
+                    prefHeight="45"
+                    GridPane.columnIndex="1"
+                    GridPane.rowIndex="1">
+            </Button>
+        </GridPane>
+    </VBox>
+</StackPane>
