@@ -9,8 +9,10 @@
 
 
 <BorderPane
+        stylesheets="@/css/main.css"
         xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml/1">
+        xmlns:fx="http://javafx.com/fxml/1"
+        style="-fx-background-image: url('background/background.png')">
 
     <top>
         <HBox alignment="TOP_RIGHT">
@@ -21,7 +23,7 @@
             <Button
                     fx:id="endGameButton"
                     text="Spiel beenden"
-                    style="-fx-border-color: #8c6f1f;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13; -fx-font-size:14px;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"
+                    style="-fx-font-size:14px"
                     prefWidth="110"
                     prefHeight="35"/>
         </HBox>
@@ -40,23 +42,23 @@
             <Button
                     fx:id="newGameButton"
                     text="Spiel starten"
-                    style="-fx-border-color: #8c6f1f;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13;-fx-font-size:20px;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"
-                    prefWidth="180"
-                    prefHeight="45"/>
+                    style="-fx-font-size:18px"
+                    prefWidth="160"
+                    prefHeight="40"/>
 
             <Button
                     fx:id="languageButton"
                     text="Sprache"
-                    style="-fx-border-color: #8c6f1f;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13;-fx-font-size:20px;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"
-                    prefWidth="150"
-                    prefHeight="45"/>
+                    style="-fx-font-size:18px"
+                    prefWidth="160"
+                    prefHeight="40"/>
 
             <Button
                     fx:id="aboutButton"
                     text="About"
-                    style="-fx-border-color: #8c6f1f;-fx-border-width:2;-fx-background-radius: 13;-fx-border-radius: 13;-fx-font-size:20px;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"
-                    prefWidth="150"
-                    prefHeight="45"/>
+                    style="-fx-font-size:18px"
+                    prefWidth="160"
+                    prefHeight="40"/>
         </VBox>
     </center>
 

@@ -5,8 +5,11 @@
 
 <?import javafx.geometry.Insets?>
 <BorderPane
+        stylesheets="@/css/main.css"
         xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml/1">
+        xmlns:fx="http://javafx.com/fxml/1"
+        style="-fx-background-color: linear-gradient(#e7d9b5, #cdb77a);-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 18, 0.28, 0, 0);">
+
 
     <center>
         <VBox
@@ -18,10 +21,11 @@
 
 
             <Label text="! G E W I N N !"
-                   style="-fx-font-size: 70px;-fx-font-weight: bold;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"/>
+                   style="-fx-font-size: 70px;-fx-font-weight: bold;-fx-text-fill: black"/>
 
             <Label fx:id="winAmount"
-                   style="-fx-font-size: 60px;-fx-font-weight: bold;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"/>
+                   style="-fx-font-size: 60px;-fx-font-weight: bold;-fx-text-fill: black"/>
+
         </VBox>
     </center>
 </BorderPane>

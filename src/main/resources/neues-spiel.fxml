@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane
+        style="-fx-background-image: url('background/background.png')"
+        stylesheets="@/css/main.css"
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1">
+
+
+<top>
+        <BorderPane>
+            <right>
+                <HBox
+                        alignment="TOP_RIGHT">
+                    <padding>
+                        <Insets bottom="15" left="15" right="15" top="15" />
+                    </padding>
+
+                    <Button
+                            fx:id="endGameButton"
+                            prefHeight="35"
+                            prefWidth="110"
+                            style="-fx-font-size:14px"
+                            text="Spiel beenden">
+                    </Button>
+                </HBox>
+            </right>
+
+            <left>
+                <HBox
+                        alignment="TOP_LEFT">
+                    <padding>
+                        <Insets bottom="15" left="15" right="15" top="15" />
+                    </padding>
+
+                    <Label
+                            style="-fx-font-size: 30px;-fx-font-weight: bold;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"
+                            text="K A R A M B A" />
+
+                </HBox>
+            </left>
+        </BorderPane>
+    </top>
+
+    <center>
+        <VBox
+                alignment="CENTER"
+                spacing="20">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+
+            <Label
+                    style="-fx-font-size: 18px;-fx-text-weight: bold"
+                    text="Start credit:" />
+
+            <TextField
+                    fx:id="rightCreditValue"
+                    maxWidth="200"
+                    prefHeight="40.0"
+                    prefWidth="200.0"
+                    promptText="Bitte geben Sie start credit ein..."
+                    style="-fx-alignment: center;-fx-font-size: 14px; -fx-background-radius: 13" />
+
+            <Button
+                    fx:id="newGameButton"
+                    prefHeight="40" prefWidth="160"
+                    style="-fx-font-size:18px"
+                    text="Spiel starten" />
+            <Button
+                    fx:id="gameInstructionsButton"
+                    prefHeight="35"
+                    prefWidth="110"
+                    style="-fx-font-size:14px"
+                    text="Spielanleitung">
+            </Button>
+        </VBox>
+
+    </center>
+</BorderPane>
