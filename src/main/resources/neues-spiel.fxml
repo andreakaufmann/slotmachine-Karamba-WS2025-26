@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane
-        style="-fx-background-image: url('background/background.png')"
+        style="-fx-background-image: url('/background/background.png');-fx-background-size: cover;-fx-background-position: center;-fx-background-repeat: no-repeat;"
         stylesheets="@/css/main.css"
         xmlns="http://javafx.com/javafx/17.0.12"
-        xmlns:fx="http://javafx.com/fxml/1">
-
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="controllers.NeuesSpielController">
 
 <top>
         <BorderPane>
@@ -25,7 +25,8 @@
                             prefHeight="35"
                             prefWidth="110"
                             style="-fx-font-size:14px"
-                            text="Spiel beenden">
+                            text="%button.endGame"
+                            onAction="#endGame">
                     </Button>
                 </HBox>
             </right>
@@ -56,29 +57,30 @@
 
             <Label
                     style="-fx-font-size: 18px;-fx-text-weight: bold"
-                    text="Start credit:" />
+                    text="%label.startCredit" />
 
             <TextField
                     fx:id="rightCreditValue"
                     maxWidth="200"
                     prefHeight="40.0"
                     prefWidth="200.0"
-                    promptText="Bitte geben Sie start credit ein..."
-                    style="-fx-alignment: center;-fx-font-size: 14px; -fx-background-radius: 13" />
+                    promptText="%prompt.startCredit"/>
 
             <Button
-                    fx:id="newGameButton"
-                    prefHeight="40" prefWidth="160"
+                    fx:id="startGameButton"
+                    prefHeight="40"
+                    prefWidth="160"
                     style="-fx-font-size:18px"
-                    text="Spiel starten" />
+                    text="%button.startGame"
+                    onAction="#startGame"/>
             <Button
                     fx:id="gameInstructionsButton"
                     prefHeight="35"
                     prefWidth="110"
                     style="-fx-font-size:14px"
-                    text="Spielanleitung">
+                    text="%instructions"
+                    onAction="#gameInstruction">
             </Button>
         </VBox>
-
     </center>
 </BorderPane>

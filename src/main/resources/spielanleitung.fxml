@@ -8,10 +8,10 @@
         stylesheets="@/css/main.css"
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml/1"
-        style="-fx-background-color: linear-gradient(#e7d9b5, #cdb77a);-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 18, 0.28, 0, 0);">
+        style="-fx-background-color: linear-gradient(#e7d9b5, #cdb77a);-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 18, 0.28, 0, 0);"
+        fx:controller="controllers.AnleitungController">
 
-
-    <center>
+<center>
         <VBox
                 alignment="CENTER"
                 spacing="20">
@@ -19,21 +19,17 @@
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-
-            <Label text="Spielanleitung....."
+            <Label text="%instructions"
                    style="-fx-font-size: 50px;-fx-font-weight: bold;-fx-text-fill: black"/>
-
-            <Label fx:id="winAmount"
-                   style="-fx-font-size: 60px;-fx-font-weight: bold;-fx-text-fill: black"/>
 
             <Button
                     fx:id="exitAboutButton"
-                    text="Exit"
+                    text="%button.close"
                     prefHeight="35"
                     prefWidth="110"
-                    style="-fx-font-size:14px">
+                    style="-fx-font-size:14px"
+                    onAction="#exit">
             </Button>
-
         </VBox>
     </center>
 </BorderPane>

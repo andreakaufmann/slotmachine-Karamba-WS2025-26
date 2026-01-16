@@ -12,7 +12,8 @@
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml/1"
         stylesheets="@/css/main.css"
-        style="-fx-background-color: linear-gradient(#e7d9b5, #cdb77a);-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 18, 0.28, 0, 0);">
+        style="-fx-background-color: linear-gradient(#e7d9b5, #cdb77a);-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 18, 0.28, 0, 0);"
+        fx:controller="controllers.SpielAnalyseController">
 
     <VBox
             alignment="CENTER"
@@ -24,13 +25,8 @@
         </padding>
 
         <Label
-                text="SPIELANALYSE"
-                style="
-           -fx-text-fill: linear-gradient(#fff7c2, #d4af37);
-           -fx-font-size: 22;
-           -fx-font-weight: bold;
-           -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 8, 0.5, 0, 0);
-       "/>
+                text="%analysis.title"
+                style="-fx-text-fill: linear-gradient(#fff7c2, #d4af37);-fx-font-size: 22;-fx-font-weight: bold;-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 8, 0.5, 0, 0);"/>
 
         <VBox
                 spacing="10"
@@ -40,7 +36,7 @@
                     alignment="CENTER"
                     spacing="10">
                 <Label
-                        text="Spins gesamt:"/>
+                        text="%totalSpins"/>
                 <Label
                         fx:id="spinsGesamtLabel"/>
             </HBox>
@@ -49,7 +45,7 @@
                     alignment="CENTER"
                     spacing="10">
                 <Label
-                        text="Einsatz gesamt:"/>
+                        text="%totalBet"/>
                 <Label
                         fx:id="einsatzGesamtLabel"/>
             </HBox>
@@ -58,7 +54,7 @@
                     alignment="CENTER"
                     spacing="10">
                 <Label
-                        text="Gewinn gesamt:"/>
+                        text="%totalWin"/>
 
                 <Label
                         fx:id="gewinnGesamtLabel"/>
@@ -69,33 +65,29 @@
                     spacing="10">
 
                 <Label
+                        text="%net"/>
+                <Label
                         fx:id="nettoLabel"/>
             </HBox>
         </VBox>
-
-        <Label
-                text="Letzte Spins"/>
-
-        <ListView
-                fx:id="letzteSpinsList"
-                  prefHeight="180"/>
 
         <HBox
                 spacing="18"
                 alignment="CENTER">
 
             <Button fx:id="resetButton"
-                    text="Zurücksetzen"
+                    text="%button.reset"
                     prefHeight="35"
                     prefWidth="110"
-                    style="-fx-font-size:14px"/>
+                    style="-fx-font-size:14px"
+                    onAction="#resetAnalysis"/>
 
             <Button fx:id="closeButton"
-                    text="Schließen"
+                    text="%button.close"
                     prefHeight="35"
                     prefWidth="110"
-                    style="-fx-font-size:14px"/>
+                    style="-fx-font-size:14px"
+                    onAction="#exit"/>
         </HBox>
-
     </VBox>
 </StackPane>

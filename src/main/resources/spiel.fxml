@@ -8,8 +8,8 @@
         stylesheets="@/css/main.css"
         xmlns="http://javafx.com/javafx/17.0.12"
         xmlns:fx="http://javafx.com/fxml/1"
-        style="-fx-background-image: url('background/background.png')">
-
+        style="-fx-background-image: url('/background/background.png');-fx-background-size: cover;-fx-background-position: center;-fx-background-repeat: no-repeat;"
+        fx:controller="controllers.SpielController">
 
 <top>
         <BorderPane>
@@ -24,7 +24,8 @@
                             prefHeight="35"
                             prefWidth="110"
                             style="-fx-font-size: 14"
-                            text="Spiel beenden">
+                            text="%button.endGame"
+                            onAction="#endGame">
                     </Button>
                 </HBox>
             </right>
@@ -53,9 +54,7 @@
                     maxWidth="420"
                     prefHeight="134.0"
                     prefWidth="420.0"
-                    style="-fx-background-color: rgba(250, 250, 250, 0.70);-fx-border-color: #d4af37;-fx-border-width: 3;-fx-border-radius: 20;-fx-background-radius: 20;-fx-padding: 20;-fx-effect: dropshadow(gaussian,rgba(212, 175, 55, 0.55),18,0.30,0,0);
-"
-            >
+                    style="-fx-background-color: rgba(250, 250, 250, 0.70);-fx-border-color: #d4af37;-fx-border-width: 3;-fx-border-radius: 20;-fx-background-radius: 20;-fx-padding: 20;-fx-effect: dropshadow(gaussian,rgba(212, 175, 55, 0.55),18,0.30,0,0);">
 
                 <HBox spacing="20">
                     <VBox
@@ -123,13 +122,13 @@
             <VBox
                     spacing="10">
 
-                <Label text="Guthaben:"
+                <Label text="%label.balance"
                        style="-fx-font-size: 14"/>
 
                 <Label fx:id="balanceLabel"
                         style="-fx-font-size: 16px; -fx-font-weight: bold;" />
 
-                <Label text="Einsatz:"
+                <Label text="%label.bet"
                        style="-fx-font-size: 14"/>
 
                 <HBox
@@ -137,7 +136,8 @@
                 <Button
                         fx:id="decreaseBet"
                         text="-"
-                        style="-fx-font-size: 13"/>
+                        style="-fx-font-size: 13"
+                        onAction="#decreaseBet"/>
 
                 <TextField
                         fx:id="betField"
@@ -147,7 +147,8 @@
                 <Button
                         fx:id="increaseBet"
                         text="+"
-                        style="-fx-font-size: 13"/>
+                        style="-fx-font-size: 13"
+                        onAction="#increaseBet"/>
                 </HBox>
 
             </VBox>
@@ -160,7 +161,7 @@
                         fx:id="spinsLeftLabel" />
 
                 <Label
-                        text="Gewinn:"
+                        text="%label.win"
                         style="-fx-font-size: 13"/>
 
                 <Label
@@ -177,11 +178,12 @@
                         prefHeight="35"
                         prefWidth="110"
                         style="-fx-font-size:14px"
-                        text="Drehen">
+                        text="%button.spin"
+                        onAction="#spin">
                 </Button>
 
                 <Label
-                        text="Auto-Spin:"
+                        text="%label.autospin"
                         style="-fx-font-size: 13"/>
                 <HBox
                         spacing="5">
@@ -191,24 +193,26 @@
                             prefHeight="30"
                             prefWidth="40"
                             style="-fx-font-size:12px"
-                            text="20" />
+                            text="20"
+                            onAction="#spinTwenty"/>
 
                     <Button
                             fx:id="spinFifty"
                             prefHeight="30"
                             prefWidth="40"
                             style="-fx-font-size:12px"
-                            text="50" />
+                            text="50"
+                            onAction="#spinFifty"/>
 
                     <Button
                             fx:id="spinHundred"
                             prefHeight="30"
                             prefWidth="40"
                             style="-fx-font-size:12px"
-                            text="100" />
+                            text="100"
+                            onAction="#spinHundred"/>
                 </HBox>
             </VBox>
-
         </HBox>
     </bottom>
 </BorderPane>

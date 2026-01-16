@@ -7,14 +7,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.geometry.Insets?>
 
-
 <BorderPane
         stylesheets="@/css/main.css"
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml/1"
-        style="-fx-background-image: url('background/background.png')">
+        style="-fx-background-image: url('/background/background.png');-fx-background-size: cover;-fx-background-position: center;-fx-background-repeat: no-repeat;"
+        fx:controller="controllers.StartFensterController">
 
-    <top>
+<top>
         <HBox alignment="TOP_RIGHT">
             <padding>
                 <Insets top="15" right="15" bottom="15" left="15"/>
@@ -22,10 +22,11 @@
 
             <Button
                     fx:id="endGameButton"
-                    text="Spiel beenden"
+                    text="%button.endGame"
                     style="-fx-font-size:14px"
                     prefWidth="110"
-                    prefHeight="35"/>
+                    prefHeight="35"
+                    onAction="#endGame"/>
         </HBox>
     </top>
 
@@ -41,25 +42,27 @@
 
             <Button
                     fx:id="newGameButton"
-                    text="Spiel starten"
+                    text="%button.newGame"
                     style="-fx-font-size:18px"
                     prefWidth="160"
-                    prefHeight="40"/>
+                    prefHeight="40"
+                    onAction="#newGame"/>
 
             <Button
                     fx:id="languageButton"
-                    text="Sprache"
+                    text="%button.languages"
                     style="-fx-font-size:18px"
                     prefWidth="160"
-                    prefHeight="40"/>
+                    prefHeight="40"
+                    onAction="#languages"/>
 
             <Button
                     fx:id="aboutButton"
-                    text="About"
+                    text="%button.about"
                     style="-fx-font-size:18px"
                     prefWidth="160"
-                    prefHeight="40"/>
+                    prefHeight="40"
+                    onAction="#aboutGame"/>
         </VBox>
     </center>
-
 </BorderPane>
