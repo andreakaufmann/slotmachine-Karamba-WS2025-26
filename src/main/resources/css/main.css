@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "AppFont";
+    src: url("../fonts/Iceland-Regular.ttf");
+}
+
+/* alles im ganzen Fenster */
+.root {
+    -fx-font-family: "AppFont";
+}
+
+/* alle Labels */
+.label {
+    -fx-text-fill: #000000;
+}
+
+/* alle Buttons */
+.button {
+    -fx-background-color: linear-gradient(#7a5a2e, #9c7a3c, #d4af37);
+
+    -fx-border-color: #8c6f1f;
+    -fx-border-width: 2;
+
+    -fx-background-radius: 13;
+    -fx-border-radius: 13;
+
+    -fx-text-fill: black;
+}
