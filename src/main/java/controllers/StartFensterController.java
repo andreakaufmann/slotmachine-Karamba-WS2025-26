@@ -9,30 +9,44 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class StartFensterController {
 
+
     @FXML
-    private void onEndGame(ActionEvent event) {
+    public void endGame(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+
     @FXML
-    private void onNewGame(ActionEvent event) throws IOException {
+    public void newGame(ActionEvent event) throws IOException {
         switchRoot(event, "/alter.fxml");
     }
 
+
     @FXML
-    private void onLanguage(ActionEvent event) throws IOException {
+    public void languages(ActionEvent event) throws IOException {
         switchRoot(event, "/sprache.fxml");
     }
 
+
+    @FXML
+    public void aboutGame(ActionEvent event) throws IOException {
+        switchRoot(event, "/About.fxml");
+    }
+
+
     private void switchRoot(ActionEvent event, String fxmlPath) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+        //Loading the resource bundle
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath), bundle);
+        Parent root = loader.load();
+
         Scene scene = ((Node) event.getSource()).getScene();
         scene.setRoot(root);
     }
 }
-// Für den "About"-Button ist aktuell keine Event-Logik vorhanden,
-// da die zugehörige View noch nicht umgesetzt wurde.
