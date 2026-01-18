@@ -19,5 +19,16 @@ public class GameLogic {
 
     public int calculateWinnings(Symbol[] spinResult, int betAmount){
         String first = spinResult[0].getName(); // Name first Symbol
+
+        // prüfen, ob alle Symbole gleich sind
+        for (int i = 1; i < spinResult.length; i++){
+            if (!spinResult[i].getName().equals(first)){
+                return 0;
+            }
+        }
+
+        // alle Symbole gleich -> Gewinn
+        int symbolValue = spinResult[0].getValue();
+        return betAmount * symbolValue;
     }
 }
