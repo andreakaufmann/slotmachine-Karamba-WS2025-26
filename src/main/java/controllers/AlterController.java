@@ -6,31 +6,35 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for age verification.
+ * Determines if the user proceeds to the game or the restriction screen.
+ */
 public class AlterController {
 
-    //Triggered when the user is old enough
+    /**
+     * Triggered when the user confirms they are old enough (Yes Button).
+     * Navigates to the new game setup screen.
+     */
     @FXML
     public void oldEnough(ActionEvent event) throws IOException {
-        //redirects to the new game settings
         switchRoot(event, "/neues-spiel.fxml");
     }
 
-    /**
-     * Triggered when the user is not old enough.
-     */
+    //Triggered when the user is not old enough.
+
     @FXML
     public void notOldEnough(ActionEvent event) throws IOException {
-        //redirects to the underage warning screen
         switchRoot(event, "/alter-unter18.fxml");
     }
 
+    //Helper method to handle scene switching with internationalization.
     private void switchRoot(ActionEvent event, String fxmlPath) throws IOException {
-        // Loading the resource bundle for translations
-        ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages");
+        // Updated to use "i18n.text" to remain consistent with your other controllers
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath), bundle);
         Parent root = loader.load();

@@ -6,34 +6,42 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-
+import javafx.scene.control.Button;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+
 public class GameOverController {
 
-    //Starts a new game session
+    @FXML private Button analyseGameButton;
+    @FXML private Button newGameButton;
+    @FXML private Button endGameButton;
+
+    //Navigates to the game analysis screen
+    @FXML
+    public void analyseGame(ActionEvent event) throws IOException {
+        switchRoot(event, "/spielanalyse.fxml");
+    }
+
+    //Returns to the new game
     @FXML
     public void newGame(ActionEvent event) throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages");
+        switchRoot(event, "/neues-spiel.fxml");
+    }
 
-        // Loading FXML with the resource bundle
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/neues-spiel.fxml"), bundle);
+    //Opens the exit confirmation dialog
+    @FXML
+    public void endGame(ActionEvent event) throws IOException {
+        switchRoot(event, "/exit-frage.fxml");
+    }
+
+    //method to switch scenes and apply the current language.
+    private void switchRoot(ActionEvent event, String fxmlPath) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath), bundle);
         Parent root = loader.load();
 
         Scene scene = ((Node) event.getSource()).getScene();
         scene.setRoot(root);
-    }
-
-    /**
-     * Closes the window.
-     * Name must match onAction="#endGame" in FXML.
-     */
-    @FXML
-    public void endGame(ActionEvent event) {
-        // Closing the current pop-up as per teammate's instruction
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
     }
 }
