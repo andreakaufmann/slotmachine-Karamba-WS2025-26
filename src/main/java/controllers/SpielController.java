@@ -33,15 +33,15 @@ public class SpielController {
     private GameLogic gameLogic;
     private Player player;
     private Reel[] reels;
+    private Timeline autoSpinTimeline;
 
     @FXML
     public void initialize() {
-        SymbolEnum[] symbols = SymbolEnum.values();
 
         // 4 Reels (Walzen)
         reels = new Reel[4];
         for (int i = 0; i < 4; i++) {
-            reels[i] = new Reel(List.of(symbols));
+            reels[i] = new Reel();
         }
         betField.setText("1"); // Default-Einsatz
         winLabel.setText("");
@@ -79,19 +79,37 @@ public class SpielController {
     public void spinHundred(ActionEvent event) throws IOException { autoSpin(100); }
 
     private void autoSpin(int count) {
-        Timeline timeline = new Timeline();
+        disableSpinButtons(true);
 
-        for (int i = 0; i < count; i++) {
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(1200 * i), e -> {
-                try{
-                    spinReelsAndUpdateUI(true);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
-            timeline.getKeyFrames().add(keyFrame);
+        if (autoSpinTimeline != null) {
+            autoSpinTimeline.stop();
         }
-        timeline.play();
+
+        autoSpinTimeline = new Timeline();
+        autoSpinTimeline.setCycleCount(count);
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1.2), e -> {
+            try {
+                int betAmount;
+                try {
+                    betAmount = Integer.parseInt(betField.getText());
+                } catch (NumberFormatException ex) {
+                    betAmount = 1;
+                }
+                if (!player.hasEnoughCredits(betAmount)) {
+                    autoSpinTimeline.stop();
+                    showNoCreditsScreen();
+                    return;
+                }
+                spinReelsAndUpdateUI(true);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        autoSpinTimeline.getKeyFrames().add(keyFrame);
+        autoSpinTimeline.setOnFinished(e -> disableSpinButtons(false));
+        autoSpinTimeline.play();
     }
 
     // Führt Spin aus, prüft Einsatz, berechnet Gewinne und aktualisiert UI
@@ -104,13 +122,17 @@ public class SpielController {
         }
 
         // Spielrunde über GameLogic spielen
-        SymbolEnum[] spinResult = new SymbolEnum[4];
-        try {
-            spinResult = gameLogic.playRound(betAmount);
-        } catch (IllegalArgumentException e) {
-            showNoCreditsScreen(null);
+        SymbolEnum[] spinResult = gameLogic.playRound(betAmount);
+
+        if(spinResult == null){
+            if(autoSpinTimeline != null){
+                autoSpinTimeline.stop();
+            }
+            showNoCreditsScreen();
             return;
         }
+
+
 
         // Gewinn anzeigen, falls vorhanen
         int winnings = gameLogic.calculateWinnings(spinResult, betAmount);
@@ -128,12 +150,16 @@ public class SpielController {
 
     }
 
-   // private void animateReels(ImageView reelImageView, SymbolEnum ) {}
-
 
     private void updateBalanceLabel() {
         balanceLabel.setText(String.format("%.2f €", player.getBalance()));
 
+    }
+    private void disableSpinButtons(boolean disable) {
+        spinButton.setDisable(disable);
+        spinTwenty.setDisable(disable);
+        spinFifty.setDisable(disable);
+        spinHundred.setDisable(disable);
     }
 
     // Gewinn Popup
@@ -189,8 +215,25 @@ public class SpielController {
         switchRoot(event, "/exit-frage.fxml");
     }
 
-    public void showNoCreditsScreen(ActionEvent event) throws IOException {
-        switchRoot(event, "/credits-aus.fxml");
+    public void showNoCreditsScreen() {
+        try {
+            ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/credits-aus.fxml"), bundle);
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Game Over");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            spinButton.setDisable(true);
+            spinTwenty.setDisable(true);
+            spinFifty.setDisable(true);
+            spinHundred.setDisable(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void switchRoot(ActionEvent event, String fxmlPath) throws IOException {

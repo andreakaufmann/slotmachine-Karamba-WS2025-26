@@ -12,10 +12,10 @@ public class GameLogic {
         this.player = player;
     }
 
-    public SymbolEnum[] spinReels(){
+    public SymbolEnum[] spinReels(int betAmount){
         SymbolEnum[] result = new SymbolEnum[reels.length];
         for (int i = 0; i < reels.length; i++){
-            result[i] = reels[i].spin();
+            result[i] = reels[i].spin(betAmount);
         }
         return result;
     }
@@ -42,7 +42,7 @@ public class GameLogic {
         player.decreaseBalance(betAmount); // Einsatz wird abgezogen
 
         //Walzen drehen
-        SymbolEnum[] result = spinReels();
+        SymbolEnum[] result = spinReels(betAmount);
 
         // Gewinn berechnen
         int winnings = calculateWinnings(result, betAmount);
