@@ -35,12 +35,13 @@ public class LanguageController {
         Locale.setDefault(locale); // Sets it for the whole app
 
         // Explicitly refresh with the new locale to ensure the UI updates
-        switchRoot(event, "/sprache.fxml");
+        switchRoot(event, "/neues-spiel.fxml");
     }
 
     //Switches the window content and updates the text to the selected language.
     private void switchRoot(ActionEvent event, String fxmlPath) throws IOException {
         // Using the current default locale set in updateLanguage
+        ResourceBundle.clearCache();
         ResourceBundle bundle = ResourceBundle.getBundle("i18n.text", Locale.getDefault());
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath), bundle);

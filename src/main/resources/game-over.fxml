@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane
+        stylesheets="@/css/main.css"
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1"
+        style="-fx-background-color: linear-gradient(#e7d9b5, #cdb77a);-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 18, 0.28, 0, 0);"
+        fx:controller="controllers.GameOverController">
+
+    <top>
+        <VBox>
+            <HBox alignment="TOP_LEFT">
+
+                <padding>
+                    <Insets bottom="15" left="15" right="15" top="15" />
+                </padding>
+
+                <Label
+                        text="K A R A M B A"
+                        style="-fx-font-size: 30px;-fx-font-weight: bold;-fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"/>
+            </HBox>
+
+            <HBox alignment="CENTER">
+                <padding>
+                    <Insets bottom="15" left="15" right="15" top="15" />
+                </padding>
+
+                <Label
+                        text="G A M E  O V E R"
+                        style="-fx-font-size: 60px;-fx-font-weight: bold;-fx-text-fill: black"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <StackPane
+                style="-fx-background-color: transparent;-fx-background-radius: 18;-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10, 0.4, 0, 0);">
+            <HBox alignment="CENTER"
+                  maxWidth="420"
+                  maxHeight="160"
+                  style="-fx-border-radius: 20;-fx-border-width: 2;-fx-border-color: black;-fx-padding: 20">
+
+                <HBox spacing="20">
+                    <VBox
+                            alignment="CENTER"
+                            prefWidth="90"
+                            prefHeight="90"
+                            style="-fx-border-radius: 20;-fx-border-width: 2;-fx-border-color: black;">
+                        <Label
+                                text="☠️"
+                                style="-fx-font-size: 70px"/>
+                    </VBox>
+
+                    <VBox
+                            alignment="CENTER"
+                            prefWidth="90"
+                            prefHeight="90"
+                            style="-fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: black;">
+                        <Label
+                                text="☠️"
+                                style="-fx-font-size: 70px"/>
+                    </VBox>
+
+                    <VBox
+                            alignment="CENTER"
+                            prefWidth="90"
+                            prefHeight="90"
+                            style="-fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: black;">
+                        <Label
+                                text="☠️"
+                                style="-fx-font-size: 70px"/>
+                    </VBox>
+
+                    <VBox
+                            alignment="CENTER"
+                            prefWidth="90"
+                            prefHeight="90"
+                            style="-fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: black;">
+                        <Label
+                                text="☠️"
+                                style="-fx-font-size: 70px"/>
+                    </VBox>
+
+                </HBox>
+            </HBox>
+        </StackPane>
+    </center>
+
+
+    <bottom>
+        <VBox alignment="CENTER">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+
+            <Button
+                    fx:id="analyseGameButton"
+                    text="%button.analysis"
+                    prefHeight="35"
+                    prefWidth="110"
+                    style="-fx-font-size:14px">
+            </Button>
+
+
+            <HBox alignment="CENTER" spacing="50">
+                <padding>
+                    <Insets bottom="30" left="40" right="40" top="20">
+                    </Insets>
+                </padding>
+
+                <Button
+                        fx:id="newGameButton"
+                        text="%button.newGame"
+                        prefHeight="40"
+                        prefWidth="160"
+                        style="-fx-font-size:18px"
+                        onAction="#newGame">
+                </Button>
+
+                <Button
+                        fx:id="endGameButton"
+                        text="%button.endGame"
+                        prefHeight="40"
+                        prefWidth="160"
+                        style="-fx-font-size:18px"
+                        onAction="#endGame">
+            </Button>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

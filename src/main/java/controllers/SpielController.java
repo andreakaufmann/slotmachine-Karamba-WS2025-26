@@ -8,13 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import slotmachine.model.Player;
-import slotmachine.model.GameLogic;
-import slotmachine.model.Reel;
-import slotmachine.model.Symbol;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+import slotmachine.model.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,7 +24,8 @@ import java.util.ResourceBundle;
 
 public class SpielController {
 
-    @FXML private Label balanceLabel, winLabel, symbol1, symbol2, symbol3, symbol4, spinsLeftLabel;
+    @FXML private Label balanceLabel, winLabel, spinsLeftLabel;
+    @FXML private ImageView symbol1, symbol2, symbol3, symbol4;
     @FXML private TextField betField;
     @FXML private Button spinButton, increaseBet, decreaseBet, endGameButton;
     @FXML private Button spinTwenty, spinFifty, spinHundred;
@@ -33,21 +36,18 @@ public class SpielController {
 
     @FXML
     public void initialize() {
-        Symbol[] symbols = {
-                new Symbol("Cherry", 2),
-                new Symbol("Lemon", 3),
-                new Symbol("Orange", 4),
-                new Symbol("Plum", 5),
-                new Symbol("Bell", 10),
-                new Symbol("Star", 20)
-        };
+        SymbolEnum[] symbols = SymbolEnum.values();
 
         // 4 Reels (Walzen)
         reels = new Reel[4];
         for (int i = 0; i < 4; i++) {
             reels[i] = new Reel(List.of(symbols));
         }
+        betField.setText("1"); // Default-Einsatz
+        winLabel.setText("");
+
     }
+
 
     /**
      * Receives the initial balance from NeuesSpielController.
@@ -56,6 +56,7 @@ public class SpielController {
     public void setInitialBalance(double balance) {
         player = new Player(balance);
         gameLogic = new GameLogic(reels, player);
+        updateBalanceLabel();
 
         if (balanceLabel != null) {
             balanceLabel.setText(String.format("%.2f €", player.getBalance()));
@@ -77,10 +78,20 @@ public class SpielController {
     @FXML
     public void spinHundred(ActionEvent event) throws IOException { autoSpin(100); }
 
-    private void autoSpin(int count) throws IOException {
+    private void autoSpin(int count) {
+        Timeline timeline = new Timeline();
+
         for (int i = 0; i < count; i++) {
-            spinReelsAndUpdateUI(false);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(1200 * i), e -> {
+                try{
+                    spinReelsAndUpdateUI(true);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+            timeline.getKeyFrames().add(keyFrame);
         }
+        timeline.play();
     }
 
     // Führt Spin aus, prüft Einsatz, berechnet Gewinne und aktualisiert UI
@@ -88,10 +99,12 @@ public class SpielController {
         int betAmount = 1;
         try {
             betAmount = Integer.parseInt(betField.getText());
-        } catch (NumberFormatException ignored) {}
+        } catch (NumberFormatException e) {
+            betAmount = 1;
+        }
 
         // Spielrunde über GameLogic spielen
-        Symbol[] spinResult;
+        SymbolEnum[] spinResult = new SymbolEnum[4];
         try {
             spinResult = gameLogic.playRound(betAmount);
         } catch (IllegalArgumentException e) {
@@ -106,12 +119,20 @@ public class SpielController {
         }
 
         // UI aktualisieren
-        symbol1.setText(spinResult[0].getName());
-        symbol2.setText(spinResult[1].getName());
-        symbol3.setText(spinResult[2].getName());
-        symbol4.setText(spinResult[3].getName());
-        balanceLabel.setText(String.format("%.2f €", player.getBalance()));
+        symbol1.setImage(new Image(getClass().getResourceAsStream(spinResult[0].getIconPath())));
+        symbol2.setImage(new Image(getClass().getResourceAsStream(spinResult[1].getIconPath())));
+        symbol3.setImage(new Image(getClass().getResourceAsStream(spinResult[2].getIconPath())));
+        symbol4.setImage(new Image(getClass().getResourceAsStream(spinResult[3].getIconPath())));
+        updateBalanceLabel();
         winLabel.setText(winnings > 0 ? winnings + " €" : "");
+
+    }
+
+   // private void animateReels(ImageView reelImageView, SymbolEnum ) {}
+
+
+    private void updateBalanceLabel() {
+        balanceLabel.setText(String.format("%.2f €", player.getBalance()));
 
     }
 
@@ -148,8 +169,18 @@ public class SpielController {
     }
 
     // Bet-Buttons
-    @FXML public void increaseBet() { }
-    @FXML public void decreaseBet() { }
+    @FXML public void increaseBet() {
+        int bet = Integer.parseInt(betField.getText());
+        bet++;
+        betField.setText(Integer.toString(bet));
+    }
+    @FXML public void decreaseBet() {
+        int bet = Integer.parseInt(betField.getText());
+        if (bet > 1) {
+            bet--;
+            betField.setText(Integer.toString(bet));
+        }
+    }
 
 
     // Navigation

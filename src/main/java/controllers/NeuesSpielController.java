@@ -16,29 +16,29 @@ import java.util.ResourceBundle;
 public class NeuesSpielController {
 
     @FXML
-    private TextField creditsField;
+    private TextField rightCreditValue;
 
     @FXML
     public void initialize() {
-        creditsField.setPromptText("Numbers only!");
-        creditsField.setText(""); // Feld leer bei Start
-        creditsField.requestFocus();
+        rightCreditValue.setPromptText("Numbers only!");
+        rightCreditValue.setText(""); // Feld leer bei Start
+        rightCreditValue.requestFocus();
     }
      @FXML
      public void startGame(ActionEvent event) throws IOException {
-         String input = creditsField.getText();
+         String input = rightCreditValue.getText();
 
          try {
              double startCredit = Double.parseDouble(input);
 
              // Prüfen, ob Guthaben positiv ist
              if(startCredit <= 0) {
-                 creditsField.clear();
-                 creditsField.setPromptText("Enter a positive number!");
+                 rightCreditValue.clear();
+                 rightCreditValue.setPromptText("Enter a positive number!");
                  return;
              } else if (startCredit > 10000) {
-                 creditsField.clear();
-                 creditsField.setPromptText("Maximum number is 10000!");
+                 rightCreditValue.clear();
+                 rightCreditValue.setPromptText("Maximum number is 10000!");
                  return;
              }
 
@@ -56,8 +56,8 @@ public class NeuesSpielController {
              scene.setRoot(root);
 
          } catch (NumberFormatException e) {
-             creditsField.clear();
-             creditsField.setPromptText("Numbers only!");
+             rightCreditValue.clear();
+             rightCreditValue.setPromptText("Numbers only!");
          }
      }
 

@@ -1,28 +1,31 @@
 package slotmachine.model;
 
+import java.util.Random;
+
 public class GameLogic {
     private final Reel[] reels;
     private final Player player;
+    private final Random random = new Random();
 
     public GameLogic(Reel[] reels, Player player){
         this.reels = reels;
         this.player = player;
     }
 
-    public Symbol[] spinReels(){
-        Symbol[] result = new Symbol[reels.length];
+    public SymbolEnum[] spinReels(){
+        SymbolEnum[] result = new SymbolEnum[reels.length];
         for (int i = 0; i < reels.length; i++){
             result[i] = reels[i].spin();
         }
-        return  result;
+        return result;
     }
 
-    public int calculateWinnings(Symbol[] spinResult, int betAmount){
-        String first = spinResult[0].getName(); // Name first Symbol
+    public int calculateWinnings(SymbolEnum[] spinResult, int betAmount){
+        String first = spinResult[0].name(); // Name first Symbol
 
         // prüfen, ob alle Symbole gleich sind
         for (int i = 1; i < spinResult.length; i++){
-            if (!spinResult[i].getName().equals(first)){
+            if (!spinResult[i].name().equals(first)){
                 return 0;
             }
         }
@@ -32,14 +35,14 @@ public class GameLogic {
         return betAmount * symbolValue;
     }
 
-    public Symbol[] playRound(int betAmount){
+    public SymbolEnum[] playRound(int betAmount){
         if(!player.hasEnoughCredits(betAmount)){
             return null;
         }
         player.decreaseBalance(betAmount); // Einsatz wird abgezogen
 
         //Walzen drehen
-        Symbol[] result = spinReels();
+        SymbolEnum[] result = spinReels();
 
         // Gewinn berechnen
         int winnings = calculateWinnings(result, betAmount);
