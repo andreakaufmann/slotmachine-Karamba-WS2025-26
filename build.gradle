@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'jvm-test-suite'
+    id 'org.openjfx.javafxplugin' version '0.0.14'
+
+}
+
+group = 'com.example.slotmachine'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+
+
+    implementation "org.openjfx:javafx-controls:21"
+    implementation "org.openjfx:javafx-fxml:21"
+}
+
+javafx {
+    version = "21"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+
+application {
+    mainClassName = 'slotmachine.Main'
+
+}
+run {
+    standardInput = System.in
+}
+
+
+test {
+    useJUnitPlatform()
+}
+
+allprojects {
+    tasks.withType(JavaCompile).tap {
+        configureEach {
+            sourceCompatibility = JavaVersion.VERSION_21
+            targetCompatibility = JavaVersion.VERSION_21
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+tasks.withType(Test).configureEach {
+    systemProperty "file.encoding", "UTF-8"
+}
+

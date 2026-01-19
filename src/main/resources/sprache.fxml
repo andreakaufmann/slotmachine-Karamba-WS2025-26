@@ -42,7 +42,6 @@
                     style="-fx-font-size:20px"
                     prefWidth="160"
                     prefHeight="40"
-                    defaultButton="true"
                     onAction="#germanVersion">
             </Button>
 

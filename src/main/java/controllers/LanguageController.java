@@ -33,9 +33,10 @@ public class LanguageController {
     private void updateLanguage(ActionEvent event, String langCode) throws IOException {
         Locale locale = new Locale(langCode);
         Locale.setDefault(locale); // Sets it for the whole app
+        ResourceBundle.clearCache();
 
         // Explicitly refresh with the new locale to ensure the UI updates
-        switchRoot(event, "/sprache.fxml");
+        switchRoot(event, "/neues-spiel.fxml");
     }
 
     //Switches the window content and updates the text to the selected language.

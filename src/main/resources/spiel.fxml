@@ -3,6 +3,11 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
+
+
 
 <BorderPane
         stylesheets="@/css/main.css"
@@ -64,9 +69,8 @@
                             prefWidth="90"
                             style="-fx-border-radius: 20;-fx-border-width: 2;-fx-border-color: black;">
 
-                        <Label
-                                fx:id="symbol1"
-                                style="-fx-font-size: 70px" />
+                        <ImageView fx:id="symbol1" fitWidth="70" fitHeight="70" preserveRatio="true"/>
+
                     </VBox>
 
                     <VBox
@@ -76,9 +80,8 @@
                             prefWidth="90"
                             style="-fx-border-radius: 20;-fx-border-width: 2;-fx-border-color: black;">
 
-                        <Label
-                                fx:id="symbol2"
-                                style="-fx-font-size: 70px" />
+                        <ImageView fx:id="symbol2" preserveRatio="true" fitWidth="70" fitHeight="70"/>
+
                     </VBox>
 
                     <VBox
@@ -88,9 +91,8 @@
                             prefWidth="90"
                             style="-fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: black;">
 
-                        <Label
-                                fx:id="symbol3"
-                                style="-fx-font-size: 70px" />
+                        <ImageView fx:id="symbol3" preserveRatio="true" fitWidth="70" fitHeight="70"/>
+
                     </VBox>
 
                     <VBox
@@ -100,9 +102,8 @@
                             prefWidth="90"
                             style="-fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: black;">
 
-                        <Label
-                                fx:id="symbol4"
-                                style="-fx-font-size: 70px" />
+                        <ImageView fx:id="symbol4" preserveRatio="true" fitWidth="70" fitHeight="70"/>
+
                     </VBox>
 
                 </HBox>
@@ -123,20 +124,20 @@
                     spacing="10">
 
                 <Label text="%label.balance"
-                       style="-fx-font-size: 14"/>
+                       style="-fx-font-size: 14; -fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"/>
 
                 <Label fx:id="balanceLabel"
-                        style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)" />
 
                 <Label text="%label.bet"
-                       style="-fx-font-size: 14"/>
+                       style="-fx-font-size: 14; -fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"/>
 
                 <HBox
                         spacing="10">
                 <Button
                         fx:id="decreaseBet"
                         text="-"
-                        style="-fx-font-size: 13"
+                        style="-fx-font-size: 15; -fx-font-weight: bold"
                         onAction="#decreaseBet"/>
 
                 <TextField
@@ -147,7 +148,7 @@
                 <Button
                         fx:id="increaseBet"
                         text="+"
-                        style="-fx-font-size: 13"
+                        style="-fx-font-size: 15; -fx-font-weight: bold"
                         onAction="#increaseBet"/>
                 </HBox>
 
@@ -162,11 +163,11 @@
 
                 <Label
                         text="%label.win"
-                        style="-fx-font-size: 13"/>
+                        style="-fx-font-size: 13; -fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"/>
 
                 <Label
                         fx:id="winLabel"
-                        style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                        style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)" />
             </VBox>
 
             <VBox
@@ -177,38 +178,38 @@
                         fx:id="spinButton"
                         prefHeight="35"
                         prefWidth="110"
-                        style="-fx-font-size:14px"
+                        style="-fx-font-size:14px; -fx-font-weight: bold"
                         text="%button.spin"
                         onAction="#spin">
                 </Button>
 
                 <Label
                         text="%label.autospin"
-                        style="-fx-font-size: 13"/>
+                        style="-fx-font-size: 13; -fx-text-fill: linear-gradient(#fff7c2, #d4af37, #8c6f1f)"/>
                 <HBox
                         spacing="5">
 
                     <Button
                             fx:id="spinTwenty"
                             prefHeight="30"
-                            prefWidth="40"
-                            style="-fx-font-size:12px"
+                            prefWidth="50"
+                            style="-fx-font-size:13px"
                             text="20"
                             onAction="#spinTwenty"/>
 
                     <Button
                             fx:id="spinFifty"
                             prefHeight="30"
-                            prefWidth="40"
-                            style="-fx-font-size:12px"
+                            prefWidth="50"
+                            style="-fx-font-size:13px"
                             text="50"
                             onAction="#spinFifty"/>
 
                     <Button
                             fx:id="spinHundred"
                             prefHeight="30"
-                            prefWidth="40"
-                            style="-fx-font-size:12px"
+                            prefWidth="50"
+                            style="-fx-font-size:13px"
                             text="100"
                             onAction="#spinHundred"/>
                 </HBox>

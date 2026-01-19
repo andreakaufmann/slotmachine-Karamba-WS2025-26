@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -20,37 +21,52 @@ public class NeuesSpielController {
     @FXML
     public void initialize() {
         rightCreditValue.setPromptText("Numbers only!");
+        rightCreditValue.setText(""); // Feld leer bei Start
+        rightCreditValue.requestFocus();
     }
+     @FXML
+     public void startGame(ActionEvent event) throws IOException {
+         String input = rightCreditValue.getText();
+
+         try {
+             double startCredit = Double.parseDouble(input);
+
+             // Prüfen, ob Guthaben positiv ist
+             if(startCredit <= 0) {
+                 rightCreditValue.clear();
+                 rightCreditValue.setPromptText("Enter a positive number!");
+                 return;
+             } else if (startCredit > 10000) {
+                 rightCreditValue.clear();
+                 rightCreditValue.setPromptText("Maximum number is 10000!");
+                 return;
+             }
+
+             ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/spiel.fxml"), bundle);
+             Parent root = loader.load();
+
+             // Controller für das Spiel initialisieren
+             SpielController gameController = loader.getController();
+             if (gameController != null) {
+                 gameController.setInitialBalance(startCredit); // Now it will find the method!
+             }
+
+             Scene scene = ((Node) event.getSource()).getScene();
+             scene.setRoot(root);
+
+         } catch (NumberFormatException e) {
+             rightCreditValue.clear();
+             rightCreditValue.setPromptText("Numbers only!");
+         }
+     }
 
     @FXML
     public void endGame(ActionEvent event) throws IOException {
         switchRoot(event, "/exit-frage.fxml");
     }
 
-    @FXML
-    public void startGame(ActionEvent event) throws IOException {
-        String input = rightCreditValue.getText();
 
-        try {
-            double startCredit = Double.parseDouble(input);
-
-            ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/spiel.fxml"), bundle);
-            Parent root = loader.load();
-
-            SpielController gameController = loader.getController();
-            if (gameController != null) {
-                gameController.setInitialBalance(startCredit); // Now it will find the method!
-            }
-
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
-
-        } catch (NumberFormatException e) {
-            rightCreditValue.clear();
-            rightCreditValue.setPromptText("Numbers only!");
-        }
-    }
 
     @FXML
     public void gameInstruction(ActionEvent event) throws IOException {
