@@ -31,4 +31,27 @@ public class GameLogic {
         int symbolValue = spinResult[0].getValue();
         return betAmount * symbolValue;
     }
+
+    public Symbol[] playRound(int betAmount){
+        if(!player.hasEnoughCredits(betAmount)){
+            return null;
+        }
+        player.decreaseBalance(betAmount); // Einsatz wird abgezogen
+
+        //Walzen drehen
+        Symbol[] result = spinReels();
+
+        // Gewinn berechnen
+        int winnings = calculateWinnings(result, betAmount);
+
+        // Gewinn hinzufügen
+        if (winnings > 0){
+            player.increaseBalance(winnings);
+        }
+        return result;
+        }
+
+    public double getPlayerBalance(){
+        return player.getBalance();
+    }
 }

@@ -1,5 +1,7 @@
 package slotmachine.model;
 
+// Jedes Symbol hat einen Namen und einen Gewinnwert.
+
 public class Symbol {
     private final String name;
     private final int value;
