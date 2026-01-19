@@ -55,3 +55,4 @@ public class GameLogic {
         return player.getBalance();
     }
 }
+
