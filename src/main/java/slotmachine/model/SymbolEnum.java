@@ -1,5 +1,7 @@
 package slotmachine.model;
 
+// Enum für Symbole
+// Enthält: Icon für Anzeige, Gewinnwert, Gewicht für Zufallsauswahl
 public enum SymbolEnum {
 
         CHERRY("cherry.png", 5, 50),

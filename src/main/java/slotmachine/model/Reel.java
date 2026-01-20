@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Random;
 
 // Ein Reel (Walze) besteht aus mehreren Symbolen.
-// Beim Spin wird zufällig ein Symbol ausgewählt.
+// Wählt zufällig ein Symbol aus, gewichtet nach Einsatz
 
 public class Reel {
     private final Random random = new Random();
 
+    // Dreht die Walze
     public SymbolEnum spin(int betAmount) {
         SymbolEnum[] symbols = SymbolEnum.values();
 
@@ -28,6 +29,7 @@ public class Reel {
         return SymbolEnum.CHERRY; // = fallback
     }
 
+    // Berechnet Gewicht abhängig von Einsatz
     private int adjustedWeight(SymbolEnum symbol, int bet) {
         int weight = symbol.getBaseWeight();
 

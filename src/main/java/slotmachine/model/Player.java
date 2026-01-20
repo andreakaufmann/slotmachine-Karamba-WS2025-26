@@ -1,5 +1,6 @@
 package slotmachine.model;
 
+// Spieler-Objekt verwaltet Guthaben und Einsätze
 public class Player {
 
     private double balance;
@@ -14,7 +15,7 @@ public class Player {
     // prüfen, ob Spieler genug Guthaben hat
     public boolean hasEnoughCredits(double amount){
         return balance >= amount;
-    }
+    } // Prüft, ob Spieler genug Guthaben hat
 
     public double getBalance(){
         return balance;
@@ -31,14 +32,6 @@ public class Player {
             throw new IllegalArgumentException("Nicht genug Guthaben!");
         }
         balance -= amount;
-    }
-
-    public void adjustBalance(double amount) {
-        double newBalance = balance + amount;
-        if (newBalance < 0) {
-            throw new IllegalArgumentException("Nicht genug Guthaben!");
-        }
-        balance = newBalance;
     }
 
 }
