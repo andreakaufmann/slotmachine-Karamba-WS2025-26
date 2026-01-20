@@ -22,6 +22,11 @@
 
             <Label text="%about.title"
                    style="-fx-font-size: 50px;-fx-font-weight: bold;-fx-text-fill: black"/>
+            <Label
+                    text="%about.text"
+                    wrapText="true"
+                    style="-fx-font-size: 12px;-fx-text-fill: black"/>
+
 
             <Button
                     fx:id="exitAboutButton"
