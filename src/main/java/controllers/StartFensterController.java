@@ -17,7 +17,7 @@ public class StartFensterController {
     //Exits to the confirmation screen
     @FXML
     public void endGame(ActionEvent event) throws IOException {
-        // Creation of a new separate pop-up window
+        // Creation of a new pop-up window
         ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/exit-frage.fxml"), bundle);
         Parent root = loader.load();

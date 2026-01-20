@@ -49,10 +49,8 @@ public class SpielController {
     }
 
 
-    /**
-     * Receives the initial balance from NeuesSpielController.
-     * This method MUST exist to fix the red error.
-     */
+    //Receives the initial balance from NeuesSpielController.
+
     public void setInitialBalance(double balance) {
         player = new Player(balance);
         gameLogic = new GameLogic(reels, player);
@@ -212,7 +210,7 @@ public class SpielController {
     // Navigation to exit
     @FXML
     public void endGame(ActionEvent event) throws IOException {
-        // Creation of a new separate pop-up window
+        // Creation of a new pop-up window
         ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/exit-frage.fxml"), bundle);
         Parent root = loader.load();

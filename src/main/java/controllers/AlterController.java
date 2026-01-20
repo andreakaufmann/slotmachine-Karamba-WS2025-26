@@ -10,16 +10,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-/**
- * Controller for age verification.
- * Determines if the user proceeds to the game or the restriction screen.
- */
 public class AlterController {
 
-    /**
-     * Triggered when the user confirms they are old enough (Yes Button).
-     * Navigates to the new game setup screen.
-     */
+    //Triggered when the user confirms they are old enough
+     //Navigates to the new game setup screen.
     @FXML
     public void oldEnough(ActionEvent event) throws IOException {
         switchRoot(event, "/neues-spiel.fxml");

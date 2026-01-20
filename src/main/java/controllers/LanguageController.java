@@ -35,7 +35,7 @@ public class LanguageController {
         Locale.setDefault(locale); // Sets it for the whole app
         ResourceBundle.clearCache();
 
-        // Explicitly refresh with the new locale to ensure the UI updates
+        // Reload the UI with the current language
         switchRoot(event, "/neues-spiel.fxml");
     }
 

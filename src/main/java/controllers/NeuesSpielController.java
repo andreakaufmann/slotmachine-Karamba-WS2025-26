@@ -50,7 +50,7 @@ public class NeuesSpielController {
              // Controller für das Spiel initialisieren
              SpielController gameController = loader.getController();
              if (gameController != null) {
-                 gameController.setInitialBalance(startCredit); // Now it will find the method!
+                 gameController.setInitialBalance(startCredit);
              }
 
              Scene scene = ((Node) event.getSource()).getScene();

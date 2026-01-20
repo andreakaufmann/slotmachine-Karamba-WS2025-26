@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 public class AnleitungController {
 
     //Closes the instructions view and returns the user to the main menu.
-     //This method is triggered by onAction="#exit"
     @FXML
     public void exit(ActionEvent event) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");

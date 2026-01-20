@@ -9,9 +9,8 @@ import javafx.scene.Node;
 //Controller for the win popup. Displays the win amount
 public class WinController {
 
-    // This ID must match the fx:id="winAmount" in your FXML
     @FXML
-    private Label winAmount; // Label in gewinn.fxml
+    private Label winAmount;
 
 
      //Updates the label with the amount won.
@@ -22,7 +21,7 @@ public class WinController {
         }
     }
 
-    //Closes the popup when the user clicks anywhere on the window.
+    //Closes the popup
     @FXML
     public void closePopup(MouseEvent event) {
 

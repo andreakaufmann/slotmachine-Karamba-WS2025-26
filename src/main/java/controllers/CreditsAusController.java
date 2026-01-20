@@ -17,11 +17,10 @@ public class CreditsAusController {
     //Navigates the user back to the new game screen
     @FXML
     public void newGame(ActionEvent event) throws IOException {
-        // Find the Stage
-        // Access the primary stage
+        // Find and access the primary stage
         Stage primaryStage = (Stage) Stage.getWindows().filtered(window -> window instanceof Stage && window.isShowing()).get(0);
 
-        // Switch the content of the MAIN window
+        // Switches the content of the main window
         ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/neues-spiel.fxml"), bundle);
         Parent root = loader.load();

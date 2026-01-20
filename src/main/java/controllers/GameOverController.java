@@ -41,7 +41,7 @@ public class GameOverController {
                 .orElse(null);
 
         if (primaryStage != null) {
-            // 3. Update the Main Window
+            // Update the Main Window
             primaryStage.getScene().setRoot(root);
             primaryStage.requestFocus();
 
