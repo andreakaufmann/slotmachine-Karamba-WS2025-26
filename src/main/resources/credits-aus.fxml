@@ -38,7 +38,7 @@
 
                 <Label
                         text="%credits.out.message"
-                        style="-fx-font-size: 25px; -fx-font-weight: bold"
+                        style="-fx-font-size: 23px; -fx-font-weight: bold"
                         textAlignment="CENTER"
                         wrapText="true"
                         maxWidth="400"/>

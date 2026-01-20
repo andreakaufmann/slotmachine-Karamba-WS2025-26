@@ -47,42 +47,42 @@
                 <HBox spacing="20">
                     <VBox
                             alignment="CENTER"
-                            prefWidth="90"
-                            prefHeight="90"
+                            prefWidth="70"
+                            prefHeight="70"
                             style="-fx-border-radius: 20;-fx-border-width: 2;-fx-border-color: black;">
                         <Label
-                                text="☠️"
-                                style="-fx-font-size: 70px"/>
+                                text="☠"
+                                style="-fx-font-size: 50px"/>
                     </VBox>
 
                     <VBox
                             alignment="CENTER"
-                            prefWidth="90"
-                            prefHeight="90"
+                            prefWidth="70"
+                            prefHeight="70"
                             style="-fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: black;">
                         <Label
-                                text="☠️"
-                                style="-fx-font-size: 70px"/>
+                                text="☠"
+                                style="-fx-font-size: 50px"/>
                     </VBox>
 
                     <VBox
                             alignment="CENTER"
-                            prefWidth="90"
-                            prefHeight="90"
+                            prefWidth="70"
+                            prefHeight="70"
                             style="-fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: black;">
                         <Label
-                                text="☠️"
-                                style="-fx-font-size: 70px"/>
+                                text="☠"
+                                style="-fx-font-size: 50px"/>
                     </VBox>
 
                     <VBox
                             alignment="CENTER"
-                            prefWidth="90"
-                            prefHeight="90"
+                            prefWidth="70"
+                            prefHeight="70"
                             style="-fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: black;">
                         <Label
-                                text="☠️"
-                                style="-fx-font-size: 70px"/>
+                                text="☠"
+                                style="-fx-font-size: 50px"/>
                     </VBox>
 
                 </HBox>
@@ -102,7 +102,8 @@
                     text="%button.analysis"
                     prefHeight="35"
                     prefWidth="110"
-                    style="-fx-font-size:14px">
+                    style="-fx-font-size:14px"
+                    onAction="#analyseGame">
             </Button>
 
 

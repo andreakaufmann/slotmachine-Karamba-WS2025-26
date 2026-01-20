@@ -36,6 +36,11 @@ public class SpielController {
     private Reel[] reels;
     private Timeline autoSpinTimeline;
 
+    // Statistik
+    private int spinCount = 0;
+    private double totalBetAmount = 0.0;
+    private double totalWinnings = 0.0;
+
     @FXML
     public void initialize() {
 
@@ -50,10 +55,7 @@ public class SpielController {
     }
 
 
-    /**
-     * Receives the initial balance from NeuesSpielController.
-     * This method MUST exist to fix the red error.
-     */
+    // Startguthaben setzen
     public void setInitialBalance(double balance) {
         player = new Player(balance);
         gameLogic = new GameLogic(reels, player);
@@ -116,7 +118,7 @@ public class SpielController {
     // Führt Spin aus, prüft Einsatz, berechnet Gewinne und aktualisiert UI
     private void spinReelsAndUpdateUI(boolean showPopup) throws IOException {
         playSound("spin.wav");
-        int betAmount = 1;
+        int betAmount;
         try {
             betAmount = Integer.parseInt(betField.getText());
         } catch (NumberFormatException e) {
@@ -134,10 +136,15 @@ public class SpielController {
             return;
         }
 
-
-
         // Gewinn anzeigen, falls vorhanen
         int winnings = gameLogic.calculateWinnings(spinResult, betAmount);
+
+        // Statistik aktualisieren
+        spinCount++;
+        totalBetAmount += betAmount;
+        totalWinnings += winnings;
+
+
         if (winnings > 0){
             playSound("win.wav");
         }
@@ -248,6 +255,20 @@ public class SpielController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showGameAnalysis() throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/spielanalyse.fxml"), bundle);
+        Parent root = loader.load();
+
+        SpielAnalyseController controller = loader.getController();
+        controller.setStatistics(spinCount, totalBetAmount, totalWinnings);
+
+        Stage stage = new Stage();
+        stage.setTitle("Spielanalyse");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     private void switchRoot(ActionEvent event, String fxmlPath) throws IOException {

@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -28,13 +29,36 @@ public class GameOverController {
     //Returns to the new game
     @FXML
     public void newGame(ActionEvent event) throws IOException {
-        switchRoot(event, "/neues-spiel.fxml");
+        //Load the new screen data first
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/neues-spiel.fxml"), bundle);
+        Parent root = loader.load();
+
+        //Identify the primary Stage
+        Stage primaryStage = (Stage) Stage.getWindows().stream()
+                .filter(window -> window instanceof Stage)
+                .findFirst()
+                .orElse(null);
+
+        if (primaryStage != null) {
+            // Update the Main Window
+            primaryStage.getScene().setRoot(root);
+            primaryStage.requestFocus();
+
+            //Close every single other window
+            Object[] windows = Stage.getWindows().toArray();
+            for (Object window : windows) {
+                if (window instanceof Stage && window != primaryStage) {
+                    ((Stage) window).close();
+                }
+            }
+        }
     }
 
-    //Opens the exit confirmation dialog
+    //Exit
     @FXML
-    public void endGame(ActionEvent event) throws IOException {
-        switchRoot(event, "/exit-frage.fxml");
+    public void endGame(ActionEvent event) {
+        Platform.exit();
     }
 
     //method to switch scenes and apply the current language.

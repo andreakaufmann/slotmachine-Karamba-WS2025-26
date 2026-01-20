@@ -22,22 +22,49 @@ public class SpielAnalyseController {
     @FXML private Label gewinnGesamtLabel; // Displays total money won
     @FXML private Label nettoLabel;        // Displays net profit/loss
 
-    //Resets all visual labels to zero on the screen.
-    //Shows zero but do not erase information from the memory
+    private int totalSpins = 0;
+    private double totalBet = 0;
+    private double totalWin = 0;
+
+    // von SpielController aufgerufen
+    public void setStatistics(int spins, double bet, double win) {
+        this.totalSpins = spins;
+        this.totalBet = bet;
+        this.totalWin = win;
+        updateLabels();
+    }
+
+    @FXML
+    public void initialize() {
+        updateLabels();
+    }
+
+    private void updateLabels() {
+        spinsGesamtLabel.setText(String.valueOf(totalSpins));
+        einsatzGesamtLabel.setText(String.format("%.2f €", totalBet));
+        gewinnGesamtLabel.setText(String.format("%.2f €", totalWin));
+        nettoLabel.setText(String.format("%.2f €", totalWin - totalBet));
+    }
+
     @FXML
     public void resetAnalysis() {
-        //Update the UI to show zero values
-        spinsGesamtLabel.setText("0");
-        einsatzGesamtLabel.setText("0.00 €");
-        gewinnGesamtLabel.setText("0.00 €");
-        nettoLabel.setText("0.00 €");
-
+        totalSpins = 0;
+        totalBet = 0;
+        totalWin = 0;
+        updateLabels();
     }
+
+
 
     //Closes the analysis view and returns to the Game Over screen
     @FXML
     public void exit(ActionEvent event) throws IOException {
-        switchRoot(event, "/game-over.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/game-over.fxml"), bundle);
+        Parent root = loader.load();
+
+        Scene scene = ((Node) event.getSource()).getScene();
+        scene.setRoot(root);
     }
 
     //Helper method to switch scenes and apply the current language.

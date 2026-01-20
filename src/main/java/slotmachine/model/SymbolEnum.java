@@ -6,7 +6,9 @@ public enum SymbolEnum {
         SEVEN("seven.png", 15, 10),
         BELL("bell.png", 20, 15),
         DIAMOND("diamond.png", 50, 5),
+        STAR("star.png", 30, 8),
         HORSESHOE("horseshoe.png", 10, 30);
+
 
         private final String iconPath;
         private final int value;
