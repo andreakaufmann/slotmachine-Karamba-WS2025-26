@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.TextField;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.animation.KeyFrame;
@@ -88,7 +89,7 @@ public class SpielController {
         autoSpinTimeline = new Timeline();
         autoSpinTimeline.setCycleCount(count);
 
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1.2), e -> {
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1.4), e -> {
             try {
                 int betAmount;
                 try {
@@ -114,6 +115,7 @@ public class SpielController {
 
     // Führt Spin aus, prüft Einsatz, berechnet Gewinne und aktualisiert UI
     private void spinReelsAndUpdateUI(boolean showPopup) throws IOException {
+        playSound("spin.wav");
         int betAmount = 1;
         try {
             betAmount = Integer.parseInt(betField.getText());
@@ -136,6 +138,9 @@ public class SpielController {
 
         // Gewinn anzeigen, falls vorhanen
         int winnings = gameLogic.calculateWinnings(spinResult, betAmount);
+        if (winnings > 0){
+            playSound("win.wav");
+        }
         if (winnings > 0 && showPopup) {
             handleWin(winnings + " €");
         }
@@ -148,6 +153,15 @@ public class SpielController {
         updateBalanceLabel();
         winLabel.setText(winnings > 0 ? winnings + " €" : "");
 
+    }
+
+    private void playSound(String fileName) {
+        try {
+            AudioClip audioClip = new AudioClip(getClass().getResource("/sounds/" + fileName).toExternalForm());
+            audioClip.play();
+        } catch (Exception e) {
+            System.err.println("Sound konnte nicht geladen werden: " + fileName);
+        }
     }
 
 
