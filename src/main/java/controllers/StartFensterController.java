@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -15,7 +17,18 @@ public class StartFensterController {
     //Exits to the confirmation screen
     @FXML
     public void endGame(ActionEvent event) throws IOException {
-        switchRoot(event, "/exit-frage.fxml");
+        // Creation of a new separate pop-up window
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/exit-frage.fxml"), bundle);
+        Parent root = loader.load();
+
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Exit?");
+        popupStage.setScene(new Scene(root));
+
+        // Make the window modal
+        popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+        popupStage.show();
     }
 
     //Navigates to the age verification screen.

@@ -209,10 +209,21 @@ public class SpielController {
     }
 
 
-    // Navigation
+    // Navigation to exit
     @FXML
     public void endGame(ActionEvent event) throws IOException {
-        switchRoot(event, "/exit-frage.fxml");
+        // Creation of a new separate pop-up window
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/exit-frage.fxml"), bundle);
+        Parent root = loader.load();
+
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Exit?");
+        popupStage.setScene(new Scene(root));
+
+        // Make the window modal
+        popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+        popupStage.show();
     }
 
     public void showNoCreditsScreen() {

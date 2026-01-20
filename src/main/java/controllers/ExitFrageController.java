@@ -17,8 +17,9 @@ public class ExitFrageController {
     //NO button: closes this window and returns to the previous step
     @FXML
     public void moveForward(ActionEvent event) {
-        //find the current window and close it.
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+
     }
 }

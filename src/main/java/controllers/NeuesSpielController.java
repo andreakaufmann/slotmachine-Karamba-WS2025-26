@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -61,10 +62,21 @@ public class NeuesSpielController {
          }
      }
 
-    @FXML
-    public void endGame(ActionEvent event) throws IOException {
-        switchRoot(event, "/exit-frage.fxml");
-    }
+     @FXML
+     public void endGame(ActionEvent event) throws IOException {
+
+         ResourceBundle bundle = ResourceBundle.getBundle("i18n.text");
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/exit-frage.fxml"), bundle);
+         Parent root = loader.load();
+
+         Stage popupStage = new Stage();
+         popupStage.setTitle("Exit?");
+         popupStage.setScene(new Scene(root));
+
+
+         popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+         popupStage.show();
+     }
 
 
 
