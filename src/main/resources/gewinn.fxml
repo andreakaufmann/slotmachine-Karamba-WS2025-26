@@ -22,8 +22,6 @@
             <Label text="%win.title"
                    style="-fx-font-size: 70px;-fx-font-weight: bold;-fx-text-fill: black"/>
 
-            <Label fx:id="winAmount"
-                   style="-fx-font-size: 60px;-fx-font-weight: bold;-fx-text-fill: black"/>
         </VBox>
     </center>
 </BorderPane>
